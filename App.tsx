@@ -1,28 +1,33 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import LinearGradient from 'react-native-linear-gradient';
+import { StyleSheet, SafeAreaView, Platform } from 'react-native';
+import React from 'react';
+import Main from './components/Main';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
+const App = () => {
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+    <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      colors={['#1e2549', '#473b90', '#7646a6']}
+      style={styles.gradient}
+    >
+      <SafeAreaView style={styles.safeArea}>
+        <Main />
+      </SafeAreaView>
+    </LinearGradient>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+};
 
 export default App;
+
+const styles = StyleSheet.create({
+  gradient: {
+    flex: 1,
+  },
+  safeArea: {
+    flex: 1,
+    paddingTop: Platform.OS === 'android' ? 25 : 0,
+    width: "90%",
+    margin: "auto"
+  },
+});
